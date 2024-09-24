@@ -14,6 +14,7 @@ import ru.practicum.shareit.user.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static ru.practicum.shareit.item.dto.ItemMapper.toItemDto;
 
@@ -41,9 +42,9 @@ public class ItemServiceImpl implements ItemService {
         if (!item.getOwner().getId().equals(userId)) {
             throw new NotFoundException("Owner doesn't equals userId");
         }
-        item.setName(itemDto.getName());
-        item.setAvailable(itemDto.getAvailable());
-        item.setDescription(itemDto.getDescription());
+        item.setName(Objects.requireNonNullElse(itemDto.getName(), item.getName()));
+        item.setDescription(Objects.requireNonNullElse(itemDto.getDescription(), item.getDescription()));
+        item.setAvailable(Objects.requireNonNullElse(itemDto.getAvailable(), item.getAvailable()));
         return toItemDto(itemRepository.save(item));
     }
 

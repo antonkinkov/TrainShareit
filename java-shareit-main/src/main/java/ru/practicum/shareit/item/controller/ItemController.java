@@ -35,7 +35,7 @@ public class ItemController {
 
     @GetMapping("/{itemId}")
     public ItemDto getItemById(@PathVariable Long itemId) {
-        log.info("Get a request to get items with id = {}", itemId);
+        log.info("Get a request to get item with id = {}", itemId);
         return itemService.getById(itemId);
     }
 
