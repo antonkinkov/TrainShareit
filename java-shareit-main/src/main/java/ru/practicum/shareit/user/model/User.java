@@ -1,5 +1,6 @@
-package ru.practicum.shareit.item.dto;
+package ru.practicum.shareit.user.model;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,21 +15,16 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDto {
+public class User {
 
     @NotNull
     private Long id;
 
+    @NotNull
     @NotBlank
     @Size(min = 2, max = 20)
     private String name;
 
-    @NotBlank
-    @Size(min = 10, max = 2000)
-    private String description;
-
-    @NotNull
-    private Boolean available; // Статус, доступна вещь или нет
-
-    private String request; // Ссылка на запрос пользователя
+    @Email
+    private String email;
 }
